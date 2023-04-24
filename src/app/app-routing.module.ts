@@ -6,6 +6,7 @@ const routes: Routes = [
 
   {path: '', redirectTo: 'app-home' , pathMatch: 'full'},
   {path: 'app-home', component: HomeComponent},
+  {path: 'question', loadChildren:() => import('./presentation/question/question.module').then(m =>m.QuestionModule)},
   {path: '**', component: HomeComponent}
 
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Auth, GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
+import { Auth } from '@angular/fire/auth';
 import { SwitchUseCase } from 'src/app/application/global-use-case/switch.use-case';
 import { SignInUseCase } from 'src/app/application/user-use-case/sign-in.use-case';
 
@@ -15,15 +15,10 @@ export class SignInComponent implements OnInit {
     'https://i.pinimg.com/564x/5a/8d/83/5a8d83b0efff854caaee04b56c5f8bcc.jpg',
   ];
 
-  constructor(private auth: Auth,
-    private signInUseCase: SignInUseCase,
-    public switchUseCase : SwitchUseCase) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  loginWithGoogle() {
-    return signInWithPopup(this.auth, new GoogleAuthProvider);
-  }
 
 }

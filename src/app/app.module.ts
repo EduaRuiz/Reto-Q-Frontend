@@ -10,7 +10,7 @@ import { ViewQuestionComponent } from './presentation/question/view-question/vie
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
 
   ],
   imports: [

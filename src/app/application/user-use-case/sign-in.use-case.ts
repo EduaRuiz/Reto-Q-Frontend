@@ -8,6 +8,7 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 })
 export class SignInUseCase {
 
+  /*
 
   private statusControl : boolean = false; 
   public statusEmiter : BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.statusControl)
@@ -28,7 +29,7 @@ export class SignInUseCase {
     this.statusEmiter.next(this.statusControl); // A LA ESPERA DE UN PROXIMO CAMBIO DE INFORMACION
   }
 
-  
+  */
   
 
 
