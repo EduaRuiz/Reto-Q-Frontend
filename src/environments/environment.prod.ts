@@ -1,3 +1,8 @@
 export const environment = {
-  production: true
+  
+  production: true,
+
+  apiBaseUrl: 'https://gestion-bodega-backend-production.up.railway.app'
+     
+
 };
