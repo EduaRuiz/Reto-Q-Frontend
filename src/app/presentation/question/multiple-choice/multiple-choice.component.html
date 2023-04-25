@@ -1,17 +1,10 @@
 <p>multiple-choice works!</p>
 
-<div class="quiz-container">
-    <h2>Pregunta 2</h2>
-    <p>¿Cuál es el río más largo del mundo?</p>
-    <form>
-      <input type="radio" id="amazonas" name="respuesta" value="amazonas">
-      <label for="amazonas">Amazonas</label><br>
-      <input type="radio" id="nilo" name="respuesta" value="nilo">
-      <label for="nilo">Nilo</label><br>
-      <input type="radio" id="yangtze" name="respuesta" value="yangtze">
-      <label for="yangtze">Yangtze</label><br>
-      <input type="radio" id="misisipi" name="respuesta" value="misisipi">
-      <label for="misisipi">Misisipi</label><br>
-      <button type="submit">Enviar</button>
-    </form>
+<div class="multiple-choice quiz-container">
+  <h2>{{sentence}}</h2>
+  <div *ngFor="let option of options">
+    <input type="checkbox" [id]="option" [name]="option" [value]="option" [(ngModel)]="optionsSelected[option]"
+    (ngModelChange)="emitOptionsSelected()">
+    <label [for]="option">{{option}}</label><br>
   </div>
+</div>
