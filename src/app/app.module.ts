@@ -5,7 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './presentation/shared/shared.module';
 import { LoginModule } from './presentation/login/login.module';
-import { ViewQuestionComponent } from './presentation/question/view-question/view-question.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+
 
 
 @NgModule({
@@ -19,6 +22,8 @@ import { ViewQuestionComponent } from './presentation/question/view-question/vie
     HttpClientModule,
     SharedModule,
     LoginModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
   ],
   providers: [],
   bootstrap: [AppComponent]

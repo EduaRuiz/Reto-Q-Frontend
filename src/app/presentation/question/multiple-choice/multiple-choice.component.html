@@ -1,0 +1,10 @@
+<p>multiple-choice works!</p>
+
+<div class="multiple-choice quiz-container">
+  <h2>{{sentence}}</h2>
+  <div *ngFor="let option of options">
+    <input type="checkbox" [id]="option" [name]="option" [value]="option" [(ngModel)]="optionsSelected[option]"
+    (ngModelChange)="emitOptionsSelected()">
+    <label [for]="option">{{option}}</label><br>
+  </div>
+</div>
