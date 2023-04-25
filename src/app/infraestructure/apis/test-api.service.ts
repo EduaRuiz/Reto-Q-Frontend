@@ -34,11 +34,16 @@ export class TestApiService {
   }
 
   public create(test: TestModel): Observable<TestModel> {
-    return this.http.post<TestModel>(this.apiServeUrl + "/test/create-test", test);
+    return this.http.post<TestModel>(this.apiServeUrl + "/test/create-Test", test);
   }
 
   public delete(id : string): Observable<boolean> {
-    return this.http.delete<boolean> (this.apiServeUrl+"/test/delete-test/"+id)
+    return this.http.delete<boolean> (this.apiServeUrl+"/test/delete-Test/"+id)
   }
+
+  public generateTest(userMail: string): Observable<string> {
+    return this.http.post<string>(this.apiServeUrl + "/test/generate/"+userMail,{});
+  }
+
 
 }

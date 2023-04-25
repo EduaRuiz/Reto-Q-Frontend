@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { FactoryApiService } from 'src/app/infraestructure/global-factory-api/factory-api.service';
 
 
 
@@ -8,30 +10,12 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 })
 export class SignInUseCase {
 
-  /*
 
-  private statusControl : boolean = false; 
-  public statusEmiter : BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.statusControl)
-
-
-  constructor() {
+  constructor(private readonly factoryApiService: FactoryApiService) {
   }
 
-  defaultLogin(){
-    if(!localStorage.getItem('MyToken')){
-      localStorage.setItem('MyToken', 'false')
-    }   
+  generateTest(userMail : string) :Observable<string> {
+    return this.factoryApiService.createApiTest().generateTest(userMail);
   }
- 
-  activeLogin(){
-    localStorage.setItem('MyToken', 'true')
-    this.statusControl = !this.statusControl; // ACA GENERO EL CAMBIO EN LA VARIABLE OBSERVABLE
-    this.statusEmiter.next(this.statusControl); // A LA ESPERA DE UN PROXIMO CAMBIO DE INFORMACION
-  }
-
-  */
-  
-
-
 
 }
