@@ -47,14 +47,18 @@ export class SignInComponent implements OnInit {
   
   async onclickLogin() {
     const user = await this.loginWithGoogle();
+    
     this.signInUseCase.generateTest(user.user.email??"").subscribe({
       next: (data : any) => {if(data.success){this.handlerSuccess()} else {this.handlerError(data.message)}},
       error: (message : HttpErrorResponse) => {this.handlerError(message.error.message)},
+      
     });
-
+  
     const token = await user.user.getIdToken();
     localStorage.setItem('token', token);
     console.log(token);
+    this.switchUseCase.switchLogIn = false;
+    this.switchUseCase.switchPresentation = true; 
 
   }
 

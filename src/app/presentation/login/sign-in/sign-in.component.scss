@@ -25,16 +25,17 @@
   }
   
   .controls {
-    width: 100%;
+    width: 280px;
     background: #f8faf8;
     padding: 10px;
+    height: 45px;
   
-  
-    margin-bottom: 16px;
+    margin-top: 10px;
+    margin-bottom: 0px;
     border: 3px solid #f8faf8;
     font-family: Helvetica;
     font-size: 18px;
-    color: #212121;
+    color: #636363;
   }
   
   .form-register p {
@@ -110,26 +111,28 @@
     font-size: 19px;
     color: rgba(234, 234, 234, 0.9);
     font-family: Helvetica;
-    margin-bottom: 100px;
+    margin-bottom: 150px;
   }
   
   .content h1{
-    font-size: 64px;
+    font-size: 104px;
   }
   
   .btn-home1{
-    width: 240px;
+    width: 280px;
     height: 48px;
-    background-color: black;
-    color: white;
+    background-color: #012d31;
+    color: #13ffd8;
     font-size: 17px;
     text-transform: uppercase;
-    margin: 24px;
+    //margin: 24px;
+    margin-top: 15px;
     border: none;
+    
   }
   
   .btn-home1:hover{
-    background-color: #eeae20;
+    background-color: #8938ec;
     color: rgb(248, 250, 248);
   
   }

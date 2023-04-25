@@ -9,7 +9,7 @@ export class SwitchUseCase {
   constructor() {
   }
 
-  /*
+  
 
   public valorCaseUser : number = 0;
   public switchViewUser : boolean = true;
@@ -42,7 +42,7 @@ export class SwitchUseCase {
   public valorCaseLogin : number = 0;
   public switchLogIn : boolean = true;
   public switchPresentation : boolean = false;
- */
+ 
  
 
 }
