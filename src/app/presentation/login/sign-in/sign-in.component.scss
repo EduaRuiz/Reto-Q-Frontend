@@ -15,6 +15,7 @@
     font-family: Helvetica;
     color: white;
     box-shadow: 7px 13px 37px #000000;
+    align-items: center;
   }
   
   .form-register h4 {
@@ -59,7 +60,6 @@
   $button-active-blue: #1669F2;
   
   .google-btn {
-  //width: 184px;
   width: 100%;
   height: 46px;
   background-color: $google-blue;
@@ -157,7 +157,6 @@
     height: 100px;
     object-fit: cover;
     position:relative;
-    
     
   }
   
