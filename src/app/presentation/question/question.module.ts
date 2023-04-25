@@ -5,24 +5,19 @@ import { QuestionRoutingModule } from './question-routing.module';
 import { MultipleChoiceComponent } from './multiple-choice/multiple-choice.component';
 import { SingleChoiceComponent } from './single-choice/single-choice.component';
 import { TrueOrFalseComponent } from './true-or-false/true-or-false.component';
-
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     MultipleChoiceComponent,
     SingleChoiceComponent,
-    TrueOrFalseComponent
+    TrueOrFalseComponent,
   ],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    QuestionRoutingModule
-  ],
-  exports:[
+  imports: [CommonModule, HttpClientModule, QuestionRoutingModule, FormsModule],
+  exports: [
     MultipleChoiceComponent,
     SingleChoiceComponent,
-    TrueOrFalseComponent
-  ]
+    TrueOrFalseComponent,
+  ],
 })
-export class QuestionModule { }
+export class QuestionModule {}
