@@ -1,0 +1,10 @@
+<p>true-or-false works!</p>
+<h2>{{sentence}}</h2>
+
+<div *ngFor="let option of options">
+  <label>
+    <input type="radio" name="respuesta" [value]="option" (change)="chooseOption(option)"
+      [checked]="option === optionsSelected[0]">
+    {{option}}
+  </label>
+</div>
