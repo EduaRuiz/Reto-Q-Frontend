@@ -1,7 +1,9 @@
 <p>true-or-false works!</p>
-<h2>{{sentence}}</h2>
-<div *ngFor="let option of options">
+<div class="true-or-false quiz-container">  
+  <h2>{{sentence}}</h2>
+  <div *ngFor="let option of options">
     <input type="radio" [name]="option" [value]="option" [id]="option" (change)="chooseOption(option)"
-      [checked]="option === optionsSelected[0]">
+    [checked]="option === optionsSelected[0]">
     <label for="verdadero">{{option}}</label><br>    
+  </div>
 </div>
