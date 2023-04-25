@@ -1,0 +1,21 @@
+<section class="home" *ngIf="(currentQuestion)"> <!-- ESTA ES TODA LA VENTANA DE MI HOME -->
+    <div class="cover"> <!-- COVER TRANSPARENCIA NEGRA-->
+        <div class="content"> <!-- ESTE ES EL CONTENIDO DE MI HOME -->
+            <div  *ngIf="(currentQuestion.type === 'truefalse')">
+                <app-true-or-false [sentence]="currentQuestion.sentence" [options]="currentQuestion.options"
+                    (optionsSelectedEvent)="onOptionsSelected($event)"></app-true-or-false>
+            </div>
+            <div  *ngIf="(currentQuestion.type === 'unique')">
+                <app-single-choice [sentence]="currentQuestion.sentence" [options]="currentQuestion.options"
+                    (optionsSelectedEvent)="onOptionsSelected($event)"></app-single-choice>
+            </div>
+            <div *ngIf="(currentQuestion.type === 'multiple')">
+                <app-multiple-choice [sentence]="currentQuestion.sentence" [options]="currentQuestion.options"
+                    (optionsSelectedEvent)="onOptionsSelected($event)"></app-multiple-choice>
+            </div>
+            <div>
+                <button class="btn-home1" type="button" (click)="onSendAnswer()">Send response</button>
+            </div>
+        </div>
+    </div>
+</section>
