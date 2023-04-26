@@ -24,6 +24,7 @@ export class QuizComponent implements OnInit {
   progress!: number;
   countdown!: number;
   private intervalId!: NodeJS.Timer;
+  swithCongratulations = false
 
   constructor(
     private readonly quizService: QuizService,
@@ -79,13 +80,13 @@ export class QuizComponent implements OnInit {
             ),
         });
     this.progress === 15 && this.finishTest();
-    this.progress === 15 &&
-      this.notificationService.showMessage(
-        'Test finished!',
-        `Your score is ${this.calculateScore()}/30, also you will receive an email with your score.`,
-        'success'
-      );
-    this.progress === 15 && this.router.navigate(['app-home']);
+    this.progress === 15 && (this.swithCongratulations = true)
+    //   this.notificationService.showMessage(
+    //     'Test finished!',
+    //     `Your score is ${this.calculateScore()}/30, also you will receive an email with your score.`,
+    //     'success'
+    //   );
+    // this.progress === 15 && this.router.navigate(['app-home']);
   }
 
   onOptionsSelected(optionsSelected: string[]) {
@@ -138,6 +139,6 @@ export class QuizComponent implements OnInit {
     const hours = Math.floor((time % 86400) / 3600);
     const minutes = Math.floor((time % 3600) / 60);
     const seconds = time % 60;
-    return `${hours}h ${minutes}m ${seconds}s`;
+    return `${hours} ${minutes} ${seconds}`;
   }
 }
