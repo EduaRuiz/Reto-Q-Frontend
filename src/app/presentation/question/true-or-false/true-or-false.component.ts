@@ -14,9 +14,8 @@ export class TrueOrFalseComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.optionsSelected = [];
-    this.sentence = 'sentence';
-    this.options = ['option1', 'option2', 'option3', 'option4'];
+    this.optionsSelected = []
+
   }
 
   chooseOption(option: string) {

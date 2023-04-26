@@ -39,7 +39,7 @@ export class SwitchUseCase {
 
   //********************CONTROL DE COMPONENTES HOME-LOGIN *********************
 
-  public valorCaseLogin : number = 0;
+  //public valorCaseLogin : number = 0;
   public switchLogIn : boolean = true;
   public switchPresentation : boolean = false;
  

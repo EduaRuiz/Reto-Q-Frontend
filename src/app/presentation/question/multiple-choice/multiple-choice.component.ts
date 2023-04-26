@@ -13,8 +13,6 @@ export class MultipleChoiceComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.sentence = 'sentence';
-    this.options = ['option1', 'option2', 'option3', 'option4'];
   }
 
   emitOptionsSelected() {

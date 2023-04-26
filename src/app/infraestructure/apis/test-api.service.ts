@@ -26,7 +26,7 @@ export class TestApiService {
   }
 
   public getById(id: string): Observable<TestModel> {
-    return this.http.get<TestModel>(this.apiServeUrl + "/test/find-by-id/" + id)
+    return this.http.get<TestModel>(this.apiServeUrl + "/test/get/" + id)
   }
 
   public update(id: string, test: TestModel): Observable<TestModel> {
@@ -45,5 +45,15 @@ export class TestApiService {
     return this.http.post<string>(this.apiServeUrl + "/test/generate/"+userMail,{});
   }
 
+public answerTest(token:string, questionSentence:string, answer:string[]): Observable<TestModel> {
+  return this.http.post<TestModel>(this.apiServeUrl+"/test/answer", {token,questionSentence, answer});
+}
 
+public startTest(token: string): Observable<string>{
+  return this.http.post<string>(this.apiServeUrl+"/test/start/"+token,{});
+}
+
+public finishTest(token: string): Observable<string>{
+  return this.http.post<string>(this.apiServeUrl+"/test/finish/"+token,{});
+}
 }
