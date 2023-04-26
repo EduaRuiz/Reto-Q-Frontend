@@ -1,9 +1,9 @@
-<section class="home" *ngIf="(currentQuestion)"><!-- ESTA ES TODA LA VENTANA DE MI HOME -->
+<section class="home" > <!-- ESTA ES TODA LA VENTANA DE MI HOME -->
     {{progress+ '/15'}}
     <h1>Countdown: {{ formatTime(countdown) }}</h1>
     <div class="cover"> <!-- COVER TRANSPARENCIA NEGRA-->
-        <div class="content"> <!-- ESTE ES EL CONTENIDO DE MI HOME -->
-            <div *ngIf="(currentQuestion.type === 'truefalse')">
+        <div class="content" *ngIf="(currentQuestion)"> <!-- ESTE ES EL CONTENIDO DE MI HOME -->
+            <div  *ngIf="(currentQuestion.type === 'truefalse')">
                 <app-true-or-false [sentence]="currentQuestion.sentence" [options]="currentQuestion.options"
                     (optionsSelectedEvent)="onOptionsSelected($event)"></app-true-or-false>
             </div>
@@ -19,5 +19,20 @@
                 <button class="btn-home1" type="button" (click)="onSendAnswer()">Send response</button>
             </div>
         </div>
+
+        <!--***********************MENSAJE FINAL QUIZ*****************************-->
+
+        <div class="contentBye">
+            <h1>Congratulations!</h1>
+            <p>
+                You have finished the test, then we will<br>
+                send you an email with your results.<br>
+                Thank you!
+            </p>
+        </div>
+
+
+        <!--***********************FIN MENSAJE QUIZ*******************************-->
+
     </div>
 </section>
