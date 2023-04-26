@@ -9,6 +9,7 @@ import { QuestionModel, TestModel } from 'src/app/domain/model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NotificationService } from '../shared/service';
+import { SwitchUseCase } from 'src/app/application/global-use-case';
 
 @Component({
   selector: 'app-quiz',
@@ -32,7 +33,9 @@ export class QuizComponent implements OnInit {
     private readonly finishTestUseCase: FinishTestUseCase,
     private readonly startTestUseCase: StartTestUseCase,
     private readonly router: Router,
-    private readonly notificationService: NotificationService
+    private readonly notificationService: NotificationService,
+    public readonly switchUseCase : SwitchUseCase
+
   ) {}
 
   ngOnInit(): void {

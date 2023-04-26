@@ -1,121 +1,33 @@
 <section class="home"> <!-- ESTA ES LA IMAGEN DE TODA LA VENTANA-->
     <div class="cover"> <!-- COVER TRANSPARENCIA NEGRA SOBRE IMAGEN DE VENTANA-->
- 
-        <!-- *ngIf="(currentQuestion&&!swithCongratulations)" -->
+
         <div class="content" *ngIf="(currentQuestion&&!swithCongratulations)">
 
 
-            <!--
-            <div class="countdown">
-                <h4>{{progress+ '/15'}}</h4>               
-                <h1>Countdown: {{ formatTime(countdown) }}</h1>
-            </div>               
-            -->
-
-            <!--
-            <div class="countdown">
-
-                <div class="countdown-timer">
-                    <div class="countdown-title">TIME </div>
-                    <div class="countdown-time">{{ formatTime(countdown) }}</div>
-                </div>
-
-                <div class="countdown-progress">
-                    <div class="countdown-label">{{ progress }}/15</div>
-                </div>
-                
-            </div>
-            -->
-
-            <!--
             <div class="countdown">
                 <div class="countdown-timer">
                     <div class="countdown-time">
-                        <div class="time-box hours">
-                            <div class="time-value">{{ formatTime(countdown).split(' ')[0] }}</div>
-                            <div class="time-unit">hour</div>
-                        </div>
-                        <span>:</span>
                         <div class="time-box minutes">
                             <div class="time-value">{{ formatTime(countdown).split(' ')[1] }}</div>
-                            <div class="time-unit">minute</div>
                         </div>
                         <span>:</span>
                         <div class="time-box seconds">
                             <div class="time-value">{{ formatTime(countdown).split(' ')[2] }}</div>
-                            <div class="time-unit">second</div>
                         </div>
-                    </div>
-                </div>
-                <div class="countdown-progress">
-                    <div class="countdown-label">{{ progress }}/15</div>
-                </div>
-            </div>
-            -->
-
-            <!--
-            <div class="countdown">
-                <div class="countdown-timer">
-                    <div class="countdown-time">
-
-                        <div class="time-box hours">
-                            <div class="time-value">{{ formatTime(countdown).split(' ')[0] }}</div>
-                        </div>
-                        
-                        <div class="time-label">hour</div>
-                        <span>:</span>
-                        <div class="time-box minutes">
-                            <div class="time-value">{{ formatTime(countdown).split(' ')[1] }}</div>
-                        </div>
-                        <div class="time-label">minute</div>
-                        <span>:</span>
-                        <div class="time-box seconds">
-                            <div class="time-value">{{ formatTime(countdown).split(' ')[2] }}</div>
-                        </div>
-                        <div class="time-label">second</div>
-                    </div>
-                </div>
-                <div class="countdown-progress">
-                    <div class="countdown-label">{{ progress }}/15</div>
-                </div>
-            </div>
-            -->
-
-
-            <div class="countdown">
-                <div class="countdown-timer">
-                    <div class="countdown-time">
-
-                        <div class="time-box hours">
-                            <div class="time-value">{{ formatTime(countdown).split(' ')[0] }}</div>
-                        </div>
-                        
-                        
-                        <span>:</span>
-                        <div class="time-box minutes">
-                            <div class="time-value">{{ formatTime(countdown).split(' ')[1] }}</div>
-                        </div>
-                        
-                        <span>:</span>
-                        <div class="time-box seconds">
-                            <div class="time-value">{{ formatTime(countdown).split(' ')[2] }}</div>
-                        </div>
-                        
                     </div>
 
                     <div class="unit">
-                        <div class="time-label">hour</div>
                         <div class="time-label">minute</div>
                         <div class="time-label">second</div>
                     </div>
-
-
-                </div>
-                <div class="countdown-progress">
-                    <div class="countdown-label">{{ progress }}/15</div>
-                </div>
+                </div>                
+                
             </div>
 
+           
+            <div class="countdown-progress">
+                <div class="countdown-label">Level: {{this.switchUseCase.choiceViewLevel(currentQuestion.level)}}, {{ progress }}/15</div>
+            </div>
 
 
 
