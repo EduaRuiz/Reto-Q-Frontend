@@ -5,55 +5,79 @@ import { TestModel } from 'src/app/domain/model/i-test.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TestApiService {
-  
-  private apiServeUrl = environment.apiBaseUrl; 
+  private apiServeUrl = environment.apiBaseUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   httpOptions = {
-    headers : new HttpHeaders({
+    headers: new HttpHeaders({
       'Access-Control-Allow-Headers': 'Content-Type',
       'Access-Control-Allow-Methods': 'POST,GET,PUT,DELETE',
-      'Access-Control-Allow-Origin': '*'
-    })
-  }
+      'Access-Control-Allow-Origin': '*',
+    }),
+  };
 
   public getAll(): Observable<TestModel[]> {
-    return this.http.get<TestModel[]>(this.apiServeUrl + "/test/find-all-test");
+    return this.http.get<TestModel[]>(this.apiServeUrl + '/test/find-all-test');
   }
 
   public getById(id: string): Observable<TestModel> {
-    return this.http.get<TestModel>(this.apiServeUrl + "/test/get/" + id)
+    return this.http.get<TestModel>(this.apiServeUrl + '/test/get/' + id);
   }
 
   public update(id: string, test: TestModel): Observable<TestModel> {
-    return this.http.put<TestModel>(this.apiServeUrl + "/test/update-test/" + id, test)
+    return this.http.put<TestModel>(
+      this.apiServeUrl + '/test/update-test/' + id,
+      test
+    );
   }
 
   public create(test: TestModel): Observable<TestModel> {
-    return this.http.post<TestModel>(this.apiServeUrl + "/test/create-Test", test);
+    return this.http.post<TestModel>(
+      this.apiServeUrl + '/test/create-Test',
+      test
+    );
   }
 
-  public delete(id : string): Observable<boolean> {
-    return this.http.delete<boolean> (this.apiServeUrl+"/test/delete-Test/"+id)
+  public delete(id: string): Observable<boolean> {
+    return this.http.delete<boolean>(
+      this.apiServeUrl + '/test/delete-Test/' + id
+    );
   }
 
   public generateTest(userMail: string): Observable<string> {
-    return this.http.post<string>(this.apiServeUrl + "/test/generate/"+userMail,{});
+    return this.http.post<string>(
+      this.apiServeUrl + '/test/generate/' + userMail,
+      {}
+    );
   }
 
-public answerTest(token:string, questionSentence:string, answer:string[]): Observable<TestModel> {
-  return this.http.post<TestModel>(this.apiServeUrl+"/test/answer", {token,questionSentence, answer});
-}
+  public answerTest(
+    token: string,
+    questionSentence: string,
+    answer: string[]
+  ): Observable<TestModel> {
+    return this.http.post<TestModel>(this.apiServeUrl + '/test/answer', {
+      token,
+      questionSentence,
+      answer,
+    });
+  }
 
-public startTest(token: string): Observable<string>{
-  return this.http.post<string>(this.apiServeUrl+"/test/start/"+token,{});
-}
+  public startTest(token: string): Observable<string> {
+    return this.http.post<string>(
+      this.apiServeUrl + '/test/start/' + token,
+      {}
+    );
+  }
 
-public finishTest(token: string): Observable<string>{
-  return this.http.post<string>(this.apiServeUrl+"/test/finish/"+token,{});
-}
+  public finishTest(token: string): Observable<string> {
+    return this.http.post<string>(
+      this.apiServeUrl + '/test/finish/' + token,
+      {}
+    );
+  }
 }
