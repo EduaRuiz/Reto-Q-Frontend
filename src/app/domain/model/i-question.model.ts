@@ -1,6 +1,4 @@
-
 export interface QuestionModel {
-
   _id?: string;
   topic: string;
   level: string;
@@ -8,5 +6,4 @@ export interface QuestionModel {
   sentence: string;
   options: string[];
   answer: string[];
-
 }

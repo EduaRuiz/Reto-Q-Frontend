@@ -5,20 +5,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { QuizRoutingModule } from './quiz-routing.module';
 import { QuestionModule } from '../question/question.module';
 
-
-
 @NgModule({
-  declarations: [
-    QuizComponent
-  ],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    QuizRoutingModule,
-    QuestionModule
-  ],
-  exports: [
-    QuizComponent
-  ]
+  declarations: [QuizComponent],
+  imports: [CommonModule, HttpClientModule, QuizRoutingModule, QuestionModule],
+  exports: [QuizComponent],
 })
-export class QuizModule { }
+export class QuizModule {}
