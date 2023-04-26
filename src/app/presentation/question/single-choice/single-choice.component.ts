@@ -1,11 +1,19 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 
 @Component({
   selector: 'app-single-choice',
   templateUrl: './single-choice.component.html',
   styleUrls: ['./single-choice.component.scss'],
 })
-export class SingleChoiceComponent implements OnInit {
+export class SingleChoiceComponent implements OnInit, OnChanges {
   @Input() sentence!: string;
   @Input() options!: string[];
   @Output() optionsSelectedEvent = new EventEmitter<string[]>();
@@ -15,13 +23,16 @@ export class SingleChoiceComponent implements OnInit {
 
   ngOnInit(): void {
     this.optionsSelected = [];
-    this.sentence = 'sentence';
-    this.options = ['option1', 'option2', 'option3', 'option4'];
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['sentence']) {
+      this.optionsSelected = [];
+    }
   }
 
   chooseOption(option: string) {
     this.optionsSelected = [option];
     this.optionsSelectedEvent.emit(this.optionsSelected);
-    console.log(this.optionsSelected);
   }
 }

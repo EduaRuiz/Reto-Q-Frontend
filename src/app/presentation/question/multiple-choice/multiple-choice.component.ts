@@ -12,10 +12,7 @@ export class MultipleChoiceComponent implements OnInit {
   optionsSelected: { [key: string]: boolean } = {};
   constructor() {}
 
-  ngOnInit(): void {
-    this.sentence = 'sentence';
-    this.options = ['option1', 'option2', 'option3', 'option4'];
-  }
+  ngOnInit(): void {}
 
   emitOptionsSelected() {
     let optionsSelected = [];
@@ -25,6 +22,5 @@ export class MultipleChoiceComponent implements OnInit {
       }
     }
     this.optionsSelectedEvent.emit(optionsSelected);
-    console.log(optionsSelected);
   }
 }

@@ -1,11 +1,19 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 
 @Component({
   selector: 'app-true-or-false',
   templateUrl: './true-or-false.component.html',
   styleUrls: ['./true-or-false.component.scss'],
 })
-export class TrueOrFalseComponent implements OnInit {
+export class TrueOrFalseComponent implements OnInit, OnChanges {
   @Input() sentence!: string;
   @Input() options!: string[];
   @Output() optionsSelectedEvent = new EventEmitter<string[]>();
@@ -15,13 +23,16 @@ export class TrueOrFalseComponent implements OnInit {
 
   ngOnInit(): void {
     this.optionsSelected = [];
-    this.sentence = 'sentence';
-    this.options = ['option1', 'option2', 'option3', 'option4'];
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['sentence']) {
+      this.optionsSelected = [];
+    }
   }
 
   chooseOption(option: string) {
     this.optionsSelected = [option];
     this.optionsSelectedEvent.emit(this.optionsSelected);
-    console.log(this.optionsSelected);
   }
 }
