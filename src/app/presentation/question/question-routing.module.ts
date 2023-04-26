@@ -6,27 +6,21 @@ import { MultipleChoiceComponent } from './multiple-choice/multiple-choice.compo
 import { SingleChoiceComponent } from './single-choice/single-choice.component';
 import { TrueOrFalseComponent } from './true-or-false/true-or-false.component';
 
-const routes : Routes = [
+const routes: Routes = [
   {
     path: '',
     children: [
-      {path: 'app-multiple-choice', component : MultipleChoiceComponent},
-      {path: 'app-single-choice', component : SingleChoiceComponent},
-      {path: 'app-true-or-false', component : TrueOrFalseComponent},
-      {path: '**', component : HomeComponent}
-    ]
-    
-  }
-]
+      { path: 'app-multiple-choice', component: MultipleChoiceComponent },
+      { path: 'app-single-choice', component: SingleChoiceComponent },
+      { path: 'app-true-or-false', component: TrueOrFalseComponent },
+      { path: '**', component: HomeComponent },
+    ],
+  },
+];
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes)
-  ],
-  exports: [
-    RouterModule
-  ]
+  imports: [CommonModule, RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class QuestionRoutingModule { }
+export class QuestionRoutingModule {}

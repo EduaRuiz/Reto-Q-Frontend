@@ -9,12 +9,10 @@ import { TestGateway } from 'src/app/domain/gateway/test.gateway';
 import { TestApiService } from '../apis/test-api.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FactoryApiService {
-
-  constructor(private http: HttpClient, private auth : Auth) {
-  }
+  constructor(private http: HttpClient, private auth: Auth) {}
 
   createApiUser(): UserGateway {
     return new UserApiService(this.http);
@@ -27,6 +25,4 @@ export class FactoryApiService {
   createApiTest(): TestGateway {
     return new TestApiService(this.http);
   }
-
-
 }

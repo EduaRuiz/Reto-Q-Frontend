@@ -1,11 +1,13 @@
-<section class="home" *ngIf="(currentQuestion)"> <!-- ESTA ES TODA LA VENTANA DE MI HOME -->
+<section class="home" *ngIf="(currentQuestion)"><!-- ESTA ES TODA LA VENTANA DE MI HOME -->
+    {{progress+ '/15'}}
+    <h1>Countdown: {{ formatTime(countdown) }}</h1>
     <div class="cover"> <!-- COVER TRANSPARENCIA NEGRA-->
         <div class="content"> <!-- ESTE ES EL CONTENIDO DE MI HOME -->
-            <div  *ngIf="(currentQuestion.type === 'truefalse')">
+            <div *ngIf="(currentQuestion.type === 'truefalse')">
                 <app-true-or-false [sentence]="currentQuestion.sentence" [options]="currentQuestion.options"
                     (optionsSelectedEvent)="onOptionsSelected($event)"></app-true-or-false>
             </div>
-            <div  *ngIf="(currentQuestion.type === 'unique')">
+            <div *ngIf="(currentQuestion.type === 'unique')">
                 <app-single-choice [sentence]="currentQuestion.sentence" [options]="currentQuestion.options"
                     (optionsSelectedEvent)="onOptionsSelected($event)"></app-single-choice>
             </div>

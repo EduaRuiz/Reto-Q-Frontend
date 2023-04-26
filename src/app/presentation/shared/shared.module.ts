@@ -7,24 +7,9 @@ import { RouterOutlet } from '@angular/router';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { LoginModule } from '../login/login.module';
 
-
-
 @NgModule({
-  declarations: [
-    ToolbarComponent,
-    FooterComponent,
-    HomeComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterOutlet,
-    AppRoutingModule,
-    LoginModule,
-  ],
-  exports: [
-    ToolbarComponent,
-    FooterComponent,
-    HomeComponent
-  ]
+  declarations: [ToolbarComponent, FooterComponent, HomeComponent],
+  imports: [CommonModule, RouterOutlet, AppRoutingModule, LoginModule],
+  exports: [ToolbarComponent, FooterComponent, HomeComponent],
 })
-export class SharedModule { }
+export class SharedModule {}
