@@ -1,23 +1,73 @@
-<section class="home" *ngIf="(currentQuestion)"><!-- ESTA ES TODA LA VENTANA DE MI HOME -->
-    {{progress+ '/15'}}
-    <h1>Countdown: {{ formatTime(countdown) }}</h1>
-    <div class="cover"> <!-- COVER TRANSPARENCIA NEGRA-->
-        <div class="content"> <!-- ESTE ES EL CONTENIDO DE MI HOME -->
-            <div *ngIf="(currentQuestion.type === 'truefalse')">
-                <app-true-or-false [sentence]="currentQuestion.sentence" [options]="currentQuestion.options"
-                    (optionsSelectedEvent)="onOptionsSelected($event)"></app-true-or-false>
+<section class="home"> <!-- ESTA ES LA IMAGEN DE TODA LA VENTANA-->
+    <div class="cover"> <!-- COVER TRANSPARENCIA NEGRA SOBRE IMAGEN DE VENTANA-->
+
+        <div class="content" *ngIf="(currentQuestion&&!switchCongratulations)">
+
+
+            <div class="div-countdown-level">
+                <div class="countdown-level">Level: {{this.switchUseCase.choiceViewLevel(currentQuestion.level)}}</div>
             </div>
-            <div *ngIf="(currentQuestion.type === 'unique')">
-                <app-single-choice [sentence]="currentQuestion.sentence" [options]="currentQuestion.options"
-                    (optionsSelectedEvent)="onOptionsSelected($event)"></app-single-choice>
+
+            <div class="countdown-progress">
+                <div class="countdown-label">{{ progress }} out of 15</div>
             </div>
-            <div *ngIf="(currentQuestion.type === 'multiple')">
-                <app-multiple-choice [sentence]="currentQuestion.sentence" [options]="currentQuestion.options"
-                    (optionsSelectedEvent)="onOptionsSelected($event)"></app-multiple-choice>
+
+
+            <div class="countdown">
+                <div class="countdown-timer">
+                    <div class="countdown-time">
+                        <div class="time-box minutes">
+                            <div class="time-value">{{ formatTime(countdown).split(' ')[1] }}</div>
+                        </div>
+                        <span>:</span>
+                        <div class="time-box seconds">
+                            <div class="time-value">{{ formatTime(countdown).split(' ')[2] }}</div>
+                        </div>
+                    </div>
+
+                    <div class="unit">
+                        <div class="time-label">minute</div>
+                        <div class="time-label">second</div>
+                    </div>
+                </div>
             </div>
+
+
+            <div class="altruista">
+                <div *ngIf="(currentQuestion.type === 'truefalse')">
+                    <app-true-or-false [sentence]="currentQuestion.sentence" [options]="currentQuestion.options"
+                        (optionsSelectedEvent)="onOptionsSelected($event)"></app-true-or-false>
+                </div>
+                <div *ngIf="(currentQuestion.type === 'unique')">
+                    <app-single-choice [sentence]="currentQuestion.sentence" [options]="currentQuestion.options"
+                        (optionsSelectedEvent)="onOptionsSelected($event)"></app-single-choice>
+                </div>
+                <div *ngIf="(currentQuestion.type === 'multiple')">
+                    <app-multiple-choice [sentence]="currentQuestion.sentence" [options]="currentQuestion.options"
+                        (optionsSelectedEvent)="onOptionsSelected($event)"></app-multiple-choice>
+                </div>
+            </div>
+
             <div>
                 <button class="btn-home1" type="button" (click)="onSendAnswer()">Send response</button>
             </div>
+
         </div>
+
+        <!--***********************MENSAJE FINAL QUIZ*****************************-->
+
+        <!-- *ngIf="(swithCongratulations)" -->
+        <div class="contentBye" *ngIf="(switchCongratulations)">
+            <h1>Congratulations!</h1>
+            <p>
+                You have finished the test, then we will<br>
+                send you an email with your results.<br>
+                Thank you!
+            </p>
+        </div>
+
+
+        <!--***********************FIN MENSAJE QUIZ*******************************-->
+
     </div>
 </section>

@@ -9,6 +9,7 @@ import { QuestionModel, TestModel } from 'src/app/domain/model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NotificationService } from '../shared/service';
+import { SwitchUseCase } from 'src/app/application/global-use-case';
 
 @Component({
   selector: 'app-quiz',
@@ -24,6 +25,8 @@ export class QuizComponent implements OnInit {
   progress!: number;
   countdown!: number;
   private intervalId!: NodeJS.Timer;
+  switchCongratulations = false;
+  now = Date.now();
 
   constructor(
     private readonly quizService: QuizService,
@@ -31,11 +34,11 @@ export class QuizComponent implements OnInit {
     private readonly finishTestUseCase: FinishTestUseCase,
     private readonly startTestUseCase: StartTestUseCase,
     private readonly router: Router,
-    private readonly notificationService: NotificationService
+    private readonly notificationService: NotificationService,
+    public readonly switchUseCase: SwitchUseCase
   ) {}
 
   ngOnInit(): void {
-    // this.currentQuestion = {} as QuestionModel;
     this.quizService
       .getData()
       .subscribe((data: { token: string; quiz: TestModel }) => {
@@ -56,13 +59,13 @@ export class QuizComponent implements OnInit {
         }
       });
     this.progress = this.calculateProgress();
-    const targetDate = new Date(this.quiz?.started_at ?? new Date());
-    const now = Date.now();
-    const diffSeconds = Math.floor((now - targetDate.getTime()) / 1000);
-    this.countdown = 1 + diffSeconds > 0 ? 60 * 60 - diffSeconds : 0;
+    this.quiz?.started_at &&
+      (this.now = new Date(this.quiz?.started_at).getTime() + 40427); //Diferencia que se genera al convertir la fecha a numero cundo viene del backend
+    const targetDate = new Date(this.now);
+    const diffSeconds = Math.floor((Date.now() - targetDate.getTime()) / 1000);
+    this.countdown = diffSeconds > 0 ? 60 * 60 - diffSeconds : 60 * 60;
     this.startCountdown();
   }
-
   onSendAnswer() {
     !!this.answer &&
       this.answerTestUseCase
@@ -79,13 +82,7 @@ export class QuizComponent implements OnInit {
             ),
         });
     this.progress === 15 && this.finishTest();
-    this.progress === 15 &&
-      this.notificationService.showMessage(
-        'Test finished!',
-        `Your score is ${this.calculateScore()}/30, also you will receive an email with your score.`,
-        'success'
-      );
-    this.progress === 15 && this.router.navigate(['app-home']);
+    this.progress === 15 && (this.switchCongratulations = true);
   }
 
   onOptionsSelected(optionsSelected: string[]) {
@@ -121,7 +118,7 @@ export class QuizComponent implements OnInit {
   startCountdown() {
     this.intervalId = setInterval(() => {
       this.countdown--;
-      if (this.countdown === 0) {
+      if (this.countdown <= 0) {
         clearInterval(this.intervalId);
         this.finishTest();
         this.notificationService.showMessage(
@@ -138,6 +135,6 @@ export class QuizComponent implements OnInit {
     const hours = Math.floor((time % 86400) / 3600);
     const minutes = Math.floor((time % 3600) / 60);
     const seconds = time % 60;
-    return `${hours}h ${minutes}m ${seconds}s`;
+    return `${hours} ${minutes} ${seconds}`;
   }
 }

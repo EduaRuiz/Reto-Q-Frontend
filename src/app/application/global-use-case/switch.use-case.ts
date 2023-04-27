@@ -4,31 +4,32 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class SwitchUseCase {
-  constructor() {}
 
-  public valorCaseUser: number = 0;
-  public switchViewUser: boolean = true;
-  public switchUserUpdate: boolean = false;
+  constructor() { }
 
-  //*********************CONTROL DE COMPONENTES USER*************************
+  public level = "";
 
-  eligeViewUser() {
-    switch (this.valorCaseUser) {
-      case 1:
-        this.switchUserUpdate = false;
-        this.switchViewUser = true;
+  //*********************SWITCH LEVEL TO STRING*************************
+
+  choiceViewLevel(level : string) {
+    switch (level) {
+      case "1":
+        this.level = "Beginner";
         break;
 
-      case 2:
-        this.switchViewUser = false;
-        this.switchUserUpdate = true;
+      case "2":
+        this.level = "Intermediate";
+        break;
+
+      case "3":
+        this.level = "Advanced";
         break;
     }
+    return this.level
   }
 
   //********************CONTROL DE COMPONENTES HOME-LOGIN *********************
 
-  //public valorCaseLogin : number = 0;
   public switchLogIn: boolean = true;
   public switchPresentation: boolean = false;
 }
