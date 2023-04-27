@@ -59,9 +59,11 @@ export class QuizComponent implements OnInit {
         }
       });
     this.progress = this.calculateProgress();
-    const targetDate = new Date(this.quiz?.started_at ?? this.now - 20000);
-    const diffSeconds = Math.floor((this.now - targetDate.getTime()) / 1000);
-    this.countdown = diffSeconds > 0 ? 60 * 60 - diffSeconds : 0;
+    this.quiz?.started_at &&
+      (this.now = new Date(this.quiz?.started_at).getTime() + 40427); //Diferencia que se genera al convertir la fecha a numero cundo viene del backend
+    const targetDate = new Date(this.now);
+    const diffSeconds = Math.floor((Date.now() - targetDate.getTime()) / 1000);
+    this.countdown = diffSeconds > 0 ? 60 * 60 - diffSeconds : 60 * 60;
     this.startCountdown();
   }
   onSendAnswer() {
@@ -81,12 +83,6 @@ export class QuizComponent implements OnInit {
         });
     this.progress === 15 && this.finishTest();
     this.progress === 15 && (this.switchCongratulations = true);
-    //   this.notificationService.showMessage(
-    //     'Test finished!',
-    //     `Your score is ${this.calculateScore()}/30, also you will receive an email with your score.`,
-    //     'success'
-    //   );
-    // this.progress === 15 && this.router.navigate(['app-home']);
   }
 
   onOptionsSelected(optionsSelected: string[]) {
