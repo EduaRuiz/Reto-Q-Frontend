@@ -13,6 +13,8 @@
   </form>
 </section>
 
+
+
 <div class="content" *ngIf="(switchUseCase.switchPresentation)">
   <h1>Welcome!</h1>
   <p>Check your email and enter your code here,<br>thank you!</p>
@@ -28,7 +30,8 @@
       </div>
     </div>
     <div>
-      <button class="btn-home1" type="submit" (click)="onSendCode()">Send Code</button>
+      <button class="btn-home1" type="submit" (click)="onStartTest()">Start Test</button>
+      <button class="btn-home2" type="submit" (click)="onStartTest()">Send Code Again</button>
     </div>
   </form>
 </div>

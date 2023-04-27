@@ -84,7 +84,7 @@ export class SignInComponent implements OnInit {
     });
   }
 
-  onSendCode() {
+  onStartTest() {
     this.tokenForm.valid &&
       this.getTestUseCase
         .getTest(this.tokenForm.get('token')?.value)

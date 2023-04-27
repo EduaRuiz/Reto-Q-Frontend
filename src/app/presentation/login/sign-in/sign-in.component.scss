@@ -120,7 +120,7 @@
   }
   
   .btn-home1{
-    width: 280px;
+    width: 240px;
     height: 48px;
     background-color: #012d31;
     color: #13ffd8;
@@ -139,19 +139,21 @@
   }
   
   .btn-home2{
-    width: 240px;
+    width: 236px;
     height: 48px;
     font-size: 17px;
+    font-weight: 550;
     background-color: transparent;
-    border: 2px solid white;
-    color: chartreuse;
+    border: 2px solid rgb(255, 255, 255);
+    color: #012629;
     text-transform: uppercase;
     margin: 24px;
   }
   
   .btn-home2:hover{
-    border: 2px solid #eeae20;
+    border: 2px solid #00ffb7;
     color: rgb(248, 250, 248);
+   
   }
     
   //*******************************************************************************
