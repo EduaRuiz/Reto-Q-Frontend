@@ -25,7 +25,8 @@ export class QuizComponent implements OnInit {
   progress!: number;
   countdown!: number;
   private intervalId!: NodeJS.Timer;
-  swithCongratulations = false
+  switchCongratulations = false;
+  now = Date.now();
 
   constructor(
     private readonly quizService: QuizService,
@@ -34,12 +35,10 @@ export class QuizComponent implements OnInit {
     private readonly startTestUseCase: StartTestUseCase,
     private readonly router: Router,
     private readonly notificationService: NotificationService,
-    public readonly switchUseCase : SwitchUseCase
-
+    public readonly switchUseCase: SwitchUseCase
   ) {}
 
   ngOnInit(): void {
-    // this.currentQuestion = {} as QuestionModel;
     this.quizService
       .getData()
       .subscribe((data: { token: string; quiz: TestModel }) => {
@@ -60,13 +59,11 @@ export class QuizComponent implements OnInit {
         }
       });
     this.progress = this.calculateProgress();
-    const targetDate = new Date(this.quiz?.started_at ?? new Date());
-    const now = Date.now();
-    const diffSeconds = Math.floor((now - targetDate.getTime()) / 1000);
-    this.countdown = 1 + diffSeconds > 0 ? 60 * 60 - diffSeconds : 0;
+    const targetDate = new Date(this.quiz?.started_at ?? this.now - 20000);
+    const diffSeconds = Math.floor((this.now - targetDate.getTime()) / 1000);
+    this.countdown = diffSeconds > 0 ? 60 * 60 - diffSeconds : 0;
     this.startCountdown();
   }
-
   onSendAnswer() {
     !!this.answer &&
       this.answerTestUseCase
@@ -83,7 +80,7 @@ export class QuizComponent implements OnInit {
             ),
         });
     this.progress === 15 && this.finishTest();
-    this.progress === 15 && (this.swithCongratulations = true)
+    this.progress === 15 && (this.switchCongratulations = true);
     //   this.notificationService.showMessage(
     //     'Test finished!',
     //     `Your score is ${this.calculateScore()}/30, also you will receive an email with your score.`,
@@ -125,7 +122,7 @@ export class QuizComponent implements OnInit {
   startCountdown() {
     this.intervalId = setInterval(() => {
       this.countdown--;
-      if (this.countdown === 0) {
+      if (this.countdown <= 0) {
         clearInterval(this.intervalId);
         this.finishTest();
         this.notificationService.showMessage(
