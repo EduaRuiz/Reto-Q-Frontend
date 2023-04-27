@@ -66,6 +66,7 @@ export class QuizComponent implements OnInit {
     this.countdown = diffSeconds > 0 ? 60 * 60 - diffSeconds : 60 * 60;
     this.startCountdown();
   }
+
   onSendAnswer() {
     !!this.answer &&
       this.answerTestUseCase
@@ -81,8 +82,10 @@ export class QuizComponent implements OnInit {
               'error'
             ),
         });
-    this.progress === 15 && this.finishTest();
-    this.progress === 15 && (this.switchCongratulations = true);
+    !!this.answer && this.progress === 15 && this.finishTest();
+    !!this.answer &&
+      this.progress === 15 &&
+      (this.switchCongratulations = true);
   }
 
   onOptionsSelected(optionsSelected: string[]) {

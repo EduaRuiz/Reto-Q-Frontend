@@ -48,8 +48,10 @@ export class TestApiService {
     );
   }
 
-  public generateTest(userMail: string): Observable<string> {
-    return this.http.post<string>(
+  public generateTest(
+    userMail: string
+  ): Observable<{ success: boolean; message: string }> {
+    return this.http.post<{ success: boolean; message: string }>(
       this.apiServeUrl + '/test/generate/' + userMail,
       {}
     );
