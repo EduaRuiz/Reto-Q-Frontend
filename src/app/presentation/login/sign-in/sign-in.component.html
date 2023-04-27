@@ -30,8 +30,8 @@
       </div>
     </div>
     <div>
-      <button class="btn-home1" type="submit" (click)="onStartTest()">Start Test</button>
-      <button class="btn-home2" type="submit" (click)="onStartTest()">Send Code Again</button>
+      <button class="btn-home1" type="submit" (click)="onSendCode()">Start Test</button>
+      <button class="btn-home2" type="submit" (click)="onSendCodeAgain()" [disabled]="isResendDisabled">{{resendButtonText}}</button>
     </div>
   </form>
 </div>
