@@ -19,20 +19,19 @@ export class SignInComponent implements OnInit {
   imageUrls = [
     'https://i.pinimg.com/564x/5a/8d/83/5a8d83b0efff854caaee04b56c5f8bcc.jpg',
   ];
-  private formGroup!: string;
   private quiz!: TestModel;
   private token!: string;
   tokenForm!: FormGroup;
 
   constructor(
-    private auth: Auth,
-    private signInUseCase: SignInUseCase,
-    public switchUseCase: SwitchUseCase,
+    private readonly auth: Auth,
+    private readonly signInUseCase: SignInUseCase,
+    public readonly switchUseCase: SwitchUseCase,
     private readonly notificationService: NotificationService,
     private readonly getTestUseCase: GetTestUseCase,
     private readonly formBuilder: FormBuilder,
     private readonly router: Router,
-    private readonly quizServie: QuizService
+    private readonly quizService: QuizService
   ) {}
 
   ngOnInit(): void {
@@ -71,7 +70,7 @@ export class SignInComponent implements OnInit {
   async onclickLogin() {
     const user = await this.loginWithGoogle();
     this.signInUseCase.generateTest(user.user.email ?? '').subscribe({
-      next: (data: any) => {
+      next: (data: { success: boolean; message: string }) => {
         if (data.success) {
           this.handlerSuccess(user);
         } else {
@@ -92,7 +91,7 @@ export class SignInComponent implements OnInit {
           next: (value: TestModel) => {
             this.token = this.tokenForm.get('token')?.value;
             this.quiz = value;
-            this.quizServie.setData(this.token, this.quiz);
+            this.quizService.setData(this.token, this.quiz);
             this.router.navigate(['quiz/app-quiz']);
           },
           error: (response: HttpErrorResponse) =>

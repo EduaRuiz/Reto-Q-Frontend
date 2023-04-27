@@ -8,7 +8,9 @@ import { FactoryApiService } from 'src/app/infraestructure/global-factory-api';
 export class SignInUseCase {
   constructor(private readonly factoryApiService: FactoryApiService) {}
 
-  generateTest(userMail: string): Observable<string> {
+  generateTest(
+    userMail: string
+  ): Observable<{ success: boolean; message: string }> {
     return this.factoryApiService.createApiTest().generateTest(userMail);
   }
 }

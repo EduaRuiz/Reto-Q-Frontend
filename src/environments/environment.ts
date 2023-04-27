@@ -1,4 +1,3 @@
-
 export const environment = {
   firebase: {
     projectId: 'login-sofka-bf',
@@ -11,8 +10,5 @@ export const environment = {
 
   production: false,
 
-  apiBaseUrl: 'https://reto-q-backend-production.up.railway.app'
-
+  apiBaseUrl: 'https://reto-q-backend-production.up.railway.app',
 };
-
-
