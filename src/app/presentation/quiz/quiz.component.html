@@ -4,6 +4,15 @@
         <div class="content" *ngIf="(currentQuestion&&!switchCongratulations)">
 
 
+            <div class="div-countdown-level">
+                <div class="countdown-level">Level: {{this.switchUseCase.choiceViewLevel(currentQuestion.level)}}</div>
+            </div>
+
+            <div class="countdown-progress">
+                <div class="countdown-label">{{ progress }} out of 15</div>
+            </div>
+
+
             <div class="countdown">
                 <div class="countdown-timer">
                     <div class="countdown-time">
@@ -20,29 +29,25 @@
                         <div class="time-label">minute</div>
                         <div class="time-label">second</div>
                     </div>
-                </div>                
-                
-            </div>
-
-           
-            <div class="countdown-progress">
-                <div class="countdown-label">Level: {{this.switchUseCase.choiceViewLevel(currentQuestion.level)}}, {{ progress }}/15</div>
+                </div>
             </div>
 
 
+            <div class="altruista">
+                <div *ngIf="(currentQuestion.type === 'truefalse')">
+                    <app-true-or-false [sentence]="currentQuestion.sentence" [options]="currentQuestion.options"
+                        (optionsSelectedEvent)="onOptionsSelected($event)"></app-true-or-false>
+                </div>
+                <div *ngIf="(currentQuestion.type === 'unique')">
+                    <app-single-choice [sentence]="currentQuestion.sentence" [options]="currentQuestion.options"
+                        (optionsSelectedEvent)="onOptionsSelected($event)"></app-single-choice>
+                </div>
+                <div *ngIf="(currentQuestion.type === 'multiple')">
+                    <app-multiple-choice [sentence]="currentQuestion.sentence" [options]="currentQuestion.options"
+                        (optionsSelectedEvent)="onOptionsSelected($event)"></app-multiple-choice>
+                </div>
+            </div>
 
-            <div *ngIf="(currentQuestion.type === 'truefalse')">
-                <app-true-or-false [sentence]="currentQuestion.sentence" [options]="currentQuestion.options"
-                    (optionsSelectedEvent)="onOptionsSelected($event)"></app-true-or-false>
-            </div>
-            <div *ngIf="(currentQuestion.type === 'unique')">
-                <app-single-choice [sentence]="currentQuestion.sentence" [options]="currentQuestion.options"
-                    (optionsSelectedEvent)="onOptionsSelected($event)"></app-single-choice>
-            </div>
-            <div *ngIf="(currentQuestion.type === 'multiple')">
-                <app-multiple-choice [sentence]="currentQuestion.sentence" [options]="currentQuestion.options"
-                    (optionsSelectedEvent)="onOptionsSelected($event)"></app-multiple-choice>
-            </div>
             <div>
                 <button class="btn-home1" type="button" (click)="onSendAnswer()">Send response</button>
             </div>
