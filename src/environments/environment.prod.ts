@@ -7,10 +7,8 @@ export const environment = {
     authDomain: 'login-sofka-bf.firebaseapp.com',
     messagingSenderId: '828047552055',
   },
-  
+
   production: true,
 
-  apiBaseUrl: 'https://reto-q-backend-production.up.railway.app'
-     
-
+  apiBaseUrl: 'https://reto-q-backend-production.up.railway.app',
 };

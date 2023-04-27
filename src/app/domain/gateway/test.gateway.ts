@@ -7,7 +7,9 @@ export abstract class TestGateway {
   abstract create(product: TestModel): Observable<TestModel>;
   abstract delete(id: string): Observable<boolean>;
   abstract update(id: string, product: TestModel): Observable<TestModel>;
-  abstract generateTest(userMail: string): Observable<string>;
+  abstract generateTest(
+    userMail: string
+  ): Observable<{ success: boolean; message: string }>;
   abstract answerTest(
     token: string,
     questionSentence: string,
