@@ -49,4 +49,19 @@ export class UserApiService {
       this.apiServeUrl + '/user/delete-user/' + id
     );
   }
+
+  public signUp(email: string, name: string): Observable<UserModel> {
+    const newUser = {
+      fullName: name,
+      email: email,
+      level: '1',
+      available: true,
+      role: 'User',
+    };
+
+    return this.http.post<UserModel>(
+      this.apiServeUrl + '/user/registerUser',
+      newUser
+    );
+  }
 }

@@ -9,6 +9,8 @@ import { NotificationService } from '../../shared/service/notification.service';
 import { TestModel } from 'src/app/domain/model/i-test.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { QuizService } from '../../shared/service/quiz.service';
+import Swal from 'sweetalert2';
+import { SignUpUseCase } from 'src/app/application/user-use-case/sign-up.use-case';
 
 @Component({
   selector: 'app-sign-in',
@@ -30,6 +32,7 @@ export class SignInComponent implements OnInit {
   constructor(
     private readonly auth: Auth,
     private readonly signInUseCase: SignInUseCase,
+    private readonly signUpUseCase: SignUpUseCase,
     public readonly switchUseCase: SwitchUseCase,
     private readonly notificationService: NotificationService,
     private readonly getTestUseCase: GetTestUseCase,
@@ -52,6 +55,7 @@ export class SignInComponent implements OnInit {
   }
 
   async handlerSuccess(user: any) {
+    console.log(user);
     this.notificationService.showMessage(
       'Token sent!',
       'Token sent, check your mail!',
@@ -136,5 +140,87 @@ export class SignInComponent implements OnInit {
         this.resendButtonText = 'Send code again';
       }
     }, 1000);
+  }
+
+  async setEmail() {
+    const { value: formValues } = await Swal.fire({
+      title:
+        'Please enter your email and name to receive the token to take the test',
+      html:
+        '<input type="email" id="swal-input1" class="swal2-input" required>' +
+        '<input type="text" min="5" max="50" id="swal-input2" class="swal2-input" required>',
+      focusConfirm: false,
+      preConfirm: () => {
+        const emailInput = document.getElementById(
+          'swal-input1'
+        ) as HTMLInputElement;
+        const textInput = document.getElementById(
+          'swal-input2'
+        ) as HTMLInputElement;
+
+        const email = emailInput.value;
+        const text = textInput.value;
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          Swal.showValidationMessage('Invalid email address');
+          return false;
+        }
+
+        if (text.length < 5 || text.length > 50) {
+          Swal.showValidationMessage(
+            'Text must be between 5 and 50 characters'
+          );
+          return false;
+        }
+
+        return [email, text];
+      },
+    });
+
+    let email = '';
+    let name = '';
+
+    let user: {
+      user: { getIdToken: () => Promise<string>; email: string };
+    };
+
+    user = {
+      user: {
+        email,
+        getIdToken: () => Promise.resolve('token'),
+      },
+    };
+
+    if (formValues) {
+      const [emailValue, textValue] = formValues;
+      email = emailValue;
+      name = textValue;
+    }
+    this.signUpUseCase.signUp(email, name).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.signInUseCase.generateTest(email).subscribe({
+          next: (data) => {
+            if (data.success) {
+              this.handlerSuccess(user);
+            } else {
+              this.handlerError(data.message);
+            }
+          },
+        });
+      },
+      error: () => {
+        this.signInUseCase.generateTest(email).subscribe({
+          next: (data) => {
+            if (data.success) {
+              this.handlerSuccess(user);
+            } else {
+              this.handlerError(data.message);
+            }
+          },
+        });
+      },
+    });
   }
 }

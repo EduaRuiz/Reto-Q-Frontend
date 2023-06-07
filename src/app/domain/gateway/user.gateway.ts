@@ -7,4 +7,5 @@ export abstract class UserGateway {
   abstract create(product: UserModel): Observable<UserModel>;
   abstract delete(id: string): Observable<boolean>;
   abstract update(id: string, product: UserModel): Observable<UserModel>;
+  abstract signUp(email: string, name: string): Observable<UserModel>;
 }
