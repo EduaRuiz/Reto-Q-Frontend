@@ -22,6 +22,10 @@ export class SignInComponent implements OnInit {
   private quiz!: TestModel;
   private token!: string;
   tokenForm!: FormGroup;
+  private userEmail!: string;
+  isResendDisabled: boolean = true;
+  timeLeft: number = 30;
+  resendButtonText: string = 'Send code again (' + this.timeLeft + ')';
 
   constructor(
     private readonly auth: Auth,
@@ -57,6 +61,7 @@ export class SignInComponent implements OnInit {
     localStorage.setItem('token', token);
     this.switchUseCase.switchLogIn = false;
     this.switchUseCase.switchPresentation = true;
+    this.userEmail = user.user.email ?? '';
   }
 
   handlerError(error: string) {
@@ -73,6 +78,7 @@ export class SignInComponent implements OnInit {
       next: (data: { success: boolean; message: string }) => {
         if (data.success) {
           this.handlerSuccess(user);
+          this.setTime();
         } else {
           this.handlerError(data.message);
         }
@@ -97,5 +103,38 @@ export class SignInComponent implements OnInit {
           error: (response: HttpErrorResponse) =>
             this.handlerError(response.error.message),
         });
+  }
+
+  onSendCodeAgain() {
+    this.isResendDisabled = true;
+    this.timeLeft = 30;
+    this.resendButtonText = 'Send code again (' + this.timeLeft + ')';
+    this.signInUseCase.generateTest(this.userEmail).subscribe({
+      next: (data: { success: boolean; message: string }) => {
+        if (data.success) {
+          this.notificationService.showMessage(
+            'Token sent!',
+            'Token sent, check your mail!',
+            'success'
+          );
+        } else {
+          this.handlerError(data.message);
+        }
+      },
+      error: (message: HttpErrorResponse) => {
+        this.handlerError(message.error.message);
+      },
+    });
+  }
+  setTime() {
+    setInterval(() => {
+      if (this.timeLeft > 0) {
+        this.timeLeft--;
+        this.resendButtonText = 'Send code again (' + this.timeLeft + ')';
+      } else {
+        this.isResendDisabled = false;
+        this.resendButtonText = 'Send code again';
+      }
+    }, 1000);
   }
 }

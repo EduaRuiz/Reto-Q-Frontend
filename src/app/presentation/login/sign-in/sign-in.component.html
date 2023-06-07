@@ -30,6 +30,7 @@
     <div>
       <button class="btn-home1" type="submit" (click)="onSendCode()">Send Code</button>
     </div>
+    <button id="resend-code-button" (click)="onSendCodeAgain()" [disabled]="isResendDisabled">{{resendButtonText}}</button>
   </form>
 </div>
 

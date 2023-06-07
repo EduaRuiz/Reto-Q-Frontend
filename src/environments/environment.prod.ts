@@ -10,5 +10,6 @@ export const environment = {
 
   production: true,
 
-  apiBaseUrl: 'https://reto-q-backend-production.up.railway.app',
+  // apiBaseUrl: 'https://reto-q-backend-production.up.railway.app',
+  apiBaseUrl: 'https://reto-q.onrender.com',
 };
