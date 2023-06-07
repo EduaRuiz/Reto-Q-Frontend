@@ -1,11 +1,12 @@
 export const environment = {
   firebase: {
-    projectId: 'login-sofka-bf',
-    appId: '1:828047552055:web:84bbe6172f16539cc459b2',
-    storageBucket: 'login-sofka-bf.appspot.com',
-    apiKey: 'AIzaSyDLPYptoZmi5tiHLRp8wxLHWbjuZhyR0Lw',
-    authDomain: 'login-sofka-bf.firebaseapp.com',
-    messagingSenderId: '828047552055',
+    projectId: 'reto-q-firebase',
+    appId: '1:445484654577:web:6abee724712ca8331bae50',
+    storageBucket: 'reto-q-firebase.appspot.com',
+    apiKey: 'AIzaSyDsTBkeulVH9D0fGQzo5viccV3leQzstoI',
+    authDomain: 'reto-q-firebase.firebaseapp.com',
+    messagingSenderId: '445484654577',
+    measurementId: 'G-2N4WVVX9WX',
   },
 
   production: false,

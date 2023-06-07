@@ -98,7 +98,7 @@ export class SignInComponent implements OnInit {
             this.token = this.tokenForm.get('token')?.value;
             this.quiz = value;
             this.quizService.setData(this.token, this.quiz);
-            this.router.navigate(['quiz/app-quiz']);
+            this.router.navigate(['quiz']);
           },
           error: (response: HttpErrorResponse) =>
             this.handlerError(response.error.message),
