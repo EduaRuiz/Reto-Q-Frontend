@@ -24,8 +24,8 @@ export class SignInComponent implements OnInit {
   tokenForm!: FormGroup;
   private userEmail!: string;
   isResendDisabled: boolean = true;
-  timeLeft: number = 30;
-  resendButtonText: string = 'Send code again (' + this.timeLeft + ')';
+  timeLeft: number = 18;
+  resendButtonText: string = 'Resend in ' + this.timeLeft + '';
 
   constructor(
     private readonly auth: Auth,
@@ -107,8 +107,8 @@ export class SignInComponent implements OnInit {
 
   onSendCodeAgain() {
     this.isResendDisabled = true;
-    this.timeLeft = 30;
-    this.resendButtonText = 'Send code again (' + this.timeLeft + ')';
+    this.timeLeft = 18;
+    this.resendButtonText = 'Resend in ' + this.timeLeft + '';
     this.signInUseCase.generateTest(this.userEmail).subscribe({
       next: (data: { success: boolean; message: string }) => {
         if (data.success) {
@@ -130,7 +130,7 @@ export class SignInComponent implements OnInit {
     setInterval(() => {
       if (this.timeLeft > 0) {
         this.timeLeft--;
-        this.resendButtonText = 'Send code again (' + this.timeLeft + ')';
+        this.resendButtonText = 'Resend in ' + this.timeLeft + '';
       } else {
         this.isResendDisabled = false;
         this.resendButtonText = 'Send code again';
