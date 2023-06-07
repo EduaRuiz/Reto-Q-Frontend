@@ -8,10 +8,12 @@
         <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
       </div>
       <p class="btn-text" type="submit" (click)="onclickLogin()"><b> Login with Google</b></p>
-      
     </div>
-    <p class="btn-text" type="button" (click)="setEmail()"><b>No account?</b></p>
   </form>
+  <button class="btn-home1" type="submit" (click)="onSendCode()"
+    style="width: 100%; margin-bottom: 2rem; border: 1px solid;" (click)="haveToken()">Do you already have a token?</button>
+  <p class="btn-text" type="button" (click)="setEmail()"><b>No account?</b></p>
+
 </section>
 
 <div class="content" *ngIf="(switchUseCase.switchPresentation)">
@@ -30,7 +32,9 @@
     </div>
     <div>
       <button class="btn-home1" type="submit" (click)="onSendCode()">Start Test</button>
-      <button class="btn-home2" type="submit" (click)="onSendCodeAgain()" [disabled]="isResendDisabled">{{resendButtonText}}</button>
+      <button class="btn-home2" type="submit" (click)="onSendCodeAgain()"
+        [disabled]="isResendDisabled" *ngIf="isVisible">{{resendButtonText}}</button>
+        <button class="btn-home2" type="submit" (click)="goBack()" *ngIf="!isVisible">Go Back</button>
     </div>
   </form>
 </div>

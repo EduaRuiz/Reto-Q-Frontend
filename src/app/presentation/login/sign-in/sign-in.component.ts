@@ -28,6 +28,7 @@ export class SignInComponent implements OnInit {
   isResendDisabled: boolean = true;
   timeLeft: number = 18;
   resendButtonText: string = 'Resend in ' + this.timeLeft + '';
+  isVisible = true;
 
   constructor(
     private readonly auth: Auth,
@@ -222,5 +223,17 @@ export class SignInComponent implements OnInit {
         });
       },
     });
+  }
+
+  haveToken() {
+    this.switchUseCase.switchLogIn = false;
+    this.switchUseCase.switchPresentation = true;
+    this.isVisible = false;
+  }
+
+  goBack() {
+    this.switchUseCase.switchLogIn = true;
+    this.switchUseCase.switchPresentation = false;
+    this.isVisible = true;
   }
 }
